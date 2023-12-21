@@ -1,5 +1,4 @@
 getPokemon()
-makeTraitList()
 
 let tabHeaders = document.querySelectorAll(".tab-header")
 let tabHeader1 = document.querySelector("#tab-header-1")
@@ -29,6 +28,7 @@ async function getPokemon(){
   console.log(objectlist)
   let objectliststring = JSON.stringify(objectlist)
   localStorage.setItem("pokemonobjectlist", objectliststring)
+  makeTraitList()
   }
   else{
   }
@@ -40,12 +40,12 @@ async function getPokemon(){
 
 async function makeTraitList(){
   if (localStorage.getItem("pokemonStorageList") === null){
-    let objectlist = localStorage.getItem("pokemonobjectlist")
-    objectlist = JSON.parse(objectlist)
-    console.log(objectlist)
-    for (let i = 0; i < 10; i++){
-      console.log(objectlist.results[i].name)
-      let url = objectlist.results[i].url
+    let data = localStorage.getItem("pokemonobjectlist")
+    data = JSON.parse(data)
+    console.log(data)
+    for (let i = 0; i < 1017; i++){
+      console.log(data.results[i].name)
+      let url = data.results[i].url
       const response = await fetch(url)
       const data = await response.json()
       //Och möjligen göra en ny localstorage-lista att kolla mot, där relevant information cacheas? Detta är inte färdigt men känns som en bra start.
@@ -57,7 +57,7 @@ async function makeTraitList(){
       console.log(pokemon)
       pokemonList.push(pokemon)
       console.log(pokemonList)
-      if (i === (9)){
+      if (i === 1016){
         let pokemonStorageList = JSON.stringify(pokemonList)
         localStorage.setItem("pokemonStorageList", pokemonStorageList)
       }
@@ -115,8 +115,13 @@ function tabMyTeam() {
 searchField.addEventListener('keyup', async () => {
   clearSearch()
   let datalist = localStorage.getItem("pokemonStorageList")
-  datalist = JSON.parse(datalist)
-  console.log(datalist)
+  if (datalist != null){
+    datalist = JSON.parse(datalist)
+    console.log(datalist)
+  }
+  else{
+    datalist = []
+  }
   for (let i = 0; i < datalist.length; i++) {
     if (searchField.value === '') {
       clearSearch()
