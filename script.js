@@ -1,3 +1,6 @@
+getPokemon()
+makeTraitList()
+
 let tabHeaders = document.querySelectorAll(".tab-header")
 let tabHeader1 = document.querySelector("#tab-header-1")
 let tabHeader2 = document.querySelector("#tab-header-2")
@@ -33,7 +36,6 @@ async function getPokemon(){
   else{
   }
 }
-getPokemon()
 // objectlist.stringify
 // localStorage.setItem(objectlist)
 // localStorage.getItem(object)
@@ -65,8 +67,6 @@ async function makeTraitList(){
     }
   }
 }
-
-makeTraitList()
 
 tabHeaders.forEach(function (tabHeader) {
   tabHeader.addEventListener("click", function () {
