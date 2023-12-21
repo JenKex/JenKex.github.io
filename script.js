@@ -46,7 +46,7 @@ async function makeTraitList(){
     let objectlist = localStorage.getItem("pokemonobjectlist")
     objectlist = JSON.parse(objectlist)
     console.log(objectlist)
-    for (let i = 0; i < objectlist.length; i++){
+    for (let i = 0; i < 1016; i++){
       console.log(objectlist.results[i].name)
       let url = objectlist.results[i].url
       const response = await fetch(url)
@@ -60,7 +60,7 @@ async function makeTraitList(){
       console.log(pokemon)
       pokemonList.push(pokemon)
       console.log(pokemonList)
-      if (i === (objectlist.length - 1)){
+      if (i === (1015)){
         let pokemonStorageList = JSON.stringify(pokemonList)
         localStorage.setItem("pokemonStorageList", pokemonStorageList)
       }
