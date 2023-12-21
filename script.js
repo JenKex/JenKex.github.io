@@ -18,9 +18,6 @@ let teamMember1 = ''
 let teamMember2 = ''
 let teamMember3 = ''
 let pokemonList = []
-let datalist = localStorage.getItem("pokemonStorageList")
-datalist = JSON.parse(datalist)
-console.log(datalist)
 
 // Start på API-kallning och localStorage-sättning. Måste fixa 'object Object' problemet (har inte strängifierat rätt)
 // och kolla mot om information redan lagrats.
@@ -46,7 +43,7 @@ async function makeTraitList(){
     let objectlist = localStorage.getItem("pokemonobjectlist")
     objectlist = JSON.parse(objectlist)
     console.log(objectlist)
-    for (let i = 0; i < 1016; i++){
+    for (let i = 0; i < 10; i++){
       console.log(objectlist.results[i].name)
       let url = objectlist.results[i].url
       const response = await fetch(url)
@@ -60,7 +57,7 @@ async function makeTraitList(){
       console.log(pokemon)
       pokemonList.push(pokemon)
       console.log(pokemonList)
-      if (i === (1015)){
+      if (i === (9)){
         let pokemonStorageList = JSON.stringify(pokemonList)
         localStorage.setItem("pokemonStorageList", pokemonStorageList)
       }
@@ -117,6 +114,9 @@ function tabMyTeam() {
 
 searchField.addEventListener('keyup', async () => {
   clearSearch()
+  let datalist = localStorage.getItem("pokemonStorageList")
+  datalist = JSON.parse(datalist)
+  console.log(datalist)
   for (let i = 0; i < datalist.length; i++) {
     if (searchField.value === '') {
       clearSearch()
